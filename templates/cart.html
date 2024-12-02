@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cart_extras %}
+
+{% block start %}
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section ftco-animate text-center">
+        <h2 class="mb-4">Your Cart</h2>
+        <p>Review your selected items before proceeding to checkout.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 ftco-animate">
+        <div class="cart-list">
+          <table class="table">
+            <thead class="thead-primary">
+              <tr class="text-center">
+                <th>&nbsp;</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in cart_items %}
+                <tr class="text-center">
+                    <td class="product-remove">
+                        {% if item.id %}
+                            <a href="{% url 'remove_from_cart' item.id %}">
+                                <span class="icon-close">Remove from cart</span>
+                            </a>
+                        {% else %}
+                            <span>{{ forloop.counter }}.</span>
+                        {% endif %}
+                    </td>
+                    <td class="product-name">
+                        <h3>{{ item.pizza.pizza_name }}</h3>
+                    </td>
+                    <td class="price">${{ item.pizza.price }}</td>
+                    <td class="quantity">
+                        <div class="input-group mb-2">
+                            <input 
+                            type="number" 
+                            name="quantity" 
+                            class="quantity form-control input-number" 
+                            value="{{ item.quantity }}" min="1" 
+                            data-price="{{ item.pizza.price }}" 
+                            data-item-id="{{ item.id }}">
+                        </div>
+                    </td>
+                    <td class="total">${{ item.pizza.price|multiply:item.quantity }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-end">
+      <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+        <div class="cart-total mb-3">
+          <h3>Cart Totals</h3>
+            <p class="d-flex">
+                <span>Subtotal</span>
+                <span id="subtotal-value">${{ subtotal }}</span>
+            </p>
+            <p class="d-flex">
+                <span>Delivery</span>
+                <span>${{ delivery_fee }}</span>
+            </p>
+            <p class="d-flex total-price">
+                <span>Total</span>
+                <!-- <span id="total-price-value">${{ total_price}}</span> -->
+                <span id="total-price-value" data-delivery-fee="{{ delivery_fee }}">${{ total_price }}</span>
+            </p>
+          </p>
+        </div>
+        <p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{% static 'js/cart.js' %}"></script>
+{% endblock javascripts %} 
+
+

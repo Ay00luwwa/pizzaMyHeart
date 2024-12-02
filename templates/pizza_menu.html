@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+    <!-- END nav -->
+	{% block start %}
+<div class="container-wrap">
+    <div class="row no-gutters d-flex">
+        {% for pizza in pizzas %}
+            <div class="col-lg-4 d-flex ftco-animate">
+                <div class="services-wrap d-flex">
+                    <a href="#" class="img" style="background-image: url('{{ pizza.image.url }}');"></a>
+                    <div class="text p-4">
+                        <h3>{{ pizza.pizza_name }}</h3>
+                        <p>{{ pizza.category.category_name }}</p>
+                        <p class="price">
+                            <span>${{ pizza.price }}</span>
+                            <a href="{% url 'add_to_cart' pizza.uid %}" class="ml-2 btn btn-white btn-outline-white">Add to Cart</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
