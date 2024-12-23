@@ -8,6 +8,7 @@ def welcome(request):
 
 @login_required(login_url='user:login')
 def home(request):
+    pizzas = Pizza.objects.all()
     return render(request, "home.html")
 
 
@@ -25,7 +26,7 @@ def pizza_menu(request):
 
 
 # @login_required
-def add_to_cart(request, pizza_id):
+def add_to_cart(request, pizza_id):  
     pizza = Pizza.objects.get(uid=pizza_id)
     cart, created = Cart.objects.get_or_create(user=request.user, is_paid=False)
 
