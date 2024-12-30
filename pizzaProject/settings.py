@@ -28,11 +28,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "pizzaHome",
+    "user_auth",
     "rest_framework",
     "tailwind",
     "theme",
     "social_django",
 ]
+
+
+
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -111,6 +116,20 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -150,7 +169,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend'
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    'user_auth.backends.EmailBackend',
 ]
 
 
@@ -163,3 +184,7 @@ LOGOUT_REDIRECT_URL =  "user:login"
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "485968945243-iibvfiivcne320ea4m8l0ii0o7fv3r59.apps.googleusercontent.com"
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
 SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'http://127.0.0.1:9000/social-auth/complete/google-auth2/'
+
+SOCIAL_AUTH_GITHUB_KEY = "Ov23lis5fzgUH2Wf0oJv"
+SOCIAL_AUTH_GITHUB_SECRET = "f12df813bc2f88d7a7b3967e17ffc2e157a97420"
+SOCIAL_AUTH_GITHUB_REDIRECT_URI = 'http://127.0.0.1:9000/social-auth/complete/github/'

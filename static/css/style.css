@@ -67,6 +67,11 @@ body {
 [tabindex="-1"]:focus {
   outline: 0 !important; }
 
+.navbar-nav .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
 hr {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;

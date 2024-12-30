@@ -4,10 +4,10 @@ from django.utils import timezone
 
 class User(AbstractUser):
     user_id = models.AutoField(primary_key=True)
+    email = models.EmailField(unique=True, blank=False)
     role = models.CharField(max_length=255, choices=[
         ('admin', 'Admin'),
         ('user', 'User'),
-        # Add more roles as needed
     ])
     created_at = models.DateTimeField(default=timezone.now)
     is_active = models.BooleanField(default=True)
@@ -27,9 +27,12 @@ class User(AbstractUser):
         blank=True
     )
 
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
+
     def __str__(self):
-        return self.username
+        return self.email  # Represent users by their email
 
     def delete(self, using=None, keep_parents=False):
-        self.is_active = False 
+        self.is_active = False
         self.save(using=using)
