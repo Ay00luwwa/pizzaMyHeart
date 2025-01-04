@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-cf))(k(zv3!h2fou4uon$)xrmg^u10kd(_&cn0+0ew$6dzw#9&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["pizzame.pythonanywhere.com", "localhost", "127.0.0.0.1",]
+ALLOWED_HOSTS = ["pizzame.pythonanywhere.com"]
 
 
 # Application definition
