@@ -177,11 +177,10 @@ LOGIN_REDIRECT_URL ="home"
 LOGOUT_URL = "logout"
 LOGOUT_REDIRECT_URL =  "user:login"
 
-
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "485968945243-iibvfiivcne320ea4m8l0ii0o7fv3r59.apps.googleusercontent.com"
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "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"
-SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'http://127.0.0.1:9000/social-auth/complete/google-auth2/'
+SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'https://pizzame.pythonanywhere.com/social-auth/complete/google-auth2/'
 
 SOCIAL_AUTH_GITHUB_KEY = "Ov23lis5fzgUH2Wf0oJv"
 SOCIAL_AUTH_GITHUB_SECRET = "f12df813bc2f88d7a7b3967e17ffc2e157a97420"
-SOCIAL_AUTH_GITHUB_REDIRECT_URI = 'http://127.0.0.1:9000/social-auth/complete/github/'
+SOCIAL_AUTH_GITHUB_REDIRECT_URI = 'https://pizzame.pythonanywhere.com/social-auth/complete/github/'
