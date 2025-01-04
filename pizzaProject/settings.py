@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "pizzaHome",
     "user_auth",
-    "rest_framework",
     "tailwind",
     "theme",
     "social_django",
